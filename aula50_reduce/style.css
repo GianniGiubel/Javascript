@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+* {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+    font-size: large;
+}
+.caixa {
+    border: 5px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+}
+.verde {
+    border-color: green !important;
+    background-color: rgb(147, 243, 147) !important;
+}
+.azul {
+    border-color: blue !important;
+    background-color: lightblue !important;
+}
+.vermelho {
+    border-color: red !important;
+    background-color: rgb(243, 151, 151) !important;
+}
+button {
+    width: 150px;
+    height: 40px;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 5px;
+}

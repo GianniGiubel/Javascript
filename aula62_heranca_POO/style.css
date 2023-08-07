@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    box-sizing: border-box;
+}
+.carros {
+    display: flex;
+    width: 100%;
+    border: 3px solid black;
+    padding: 5px;
+    border-radius: 5px;
+}
+.carro {
+    border: 3px solid blue;
+    background-color: aqua;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    width: 200px;
+}

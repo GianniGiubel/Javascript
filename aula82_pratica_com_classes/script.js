@@ -24,23 +24,57 @@ class Bola{
         this.palco=palco
         this.arrayBolas=arrayBolas
         this.id=Date.now()+"_"+Math.floor(Math.random()*100000000000000)
-        this.controle=setInterval(this.controlar,10)
+        this.desenhar()
+        this.controle=setInterval(this.controlar,1)
         this.eu=document.getElementById(this.id)
+        numBola++
+        num_objetos.innerHTML=numBola
     }
     minhaPos=()=> {
-
+        return this.arrayBolas.indexOf(this)
     }
 
     remover=()=> {
-
+        clearInterval(this.controle)
+        bolas=bolas.filter((elemento)=> {
+            if(elemento.id!=this.id){
+                return elemento
+            }
+        })
+        this.eu.remove()
+        numBola--
+        num_objetos.innerHTML=numBola
     }
 
     desenhar=()=> {
+        const div=document.createElement("div")
+        div.setAttribute("id",this.id)
+        div.setAttribute("class","bola")
+        div.setAttribute("style",`left:${this.px}px;top:${this.py}px;width:${this.tamanho}px;height:${this.tamanho}px;background-color:rgb(${this.r},${this.g},${this.b});`)
+        this.palco.appendChild(div)
+    }
 
+    controle_bordas=()=> {
+        if(this.px+this.tamanho >= larguraPalco) {
+            this.direcaoX=-1
+        } else if(this.px <= 0) {
+            this.direcaoX=1
+        }
+        if(this.py+this.tamanho >= alturaPalco) {
+            this.direcaoY=-1
+        } else if(this.py <= 0) {
+            this.direcaoY=1
+        }
     }
 
     controlar=()=> {
-
+        this.controle_bordas()
+        this.px+=this.direcaoX*this.velocidadeX
+        this.py+=this.direcaoY*this.velocidadeY
+        this.eu.setAttribute("style",`left:${this.px}px;top:${this.py}px;width:${this.tamanho}px;height:${this.tamanho}px;background-color:rgb(${this.r},${this.g},${this.b});`)
+        if((this.px > larguraPalco) || (this.py > alturaPalco)) {
+            this.remover()
+        }
     }
 }
 
@@ -54,12 +88,12 @@ btn_add.addEventListener("click",(evento)=> {
     const quantidade=txt_quantidade.value
 
     for(let i=0;i<quantidade;i++){
-
+        bolas.push(new Bola(bolas,palco))
     }
 })
 
 btn_remover.addEventListener("click",(evento)=> {
     bolas.map((elemento)=> {
-        elemento.pop
+        elemento.remover()
     })
 })
